@@ -6,23 +6,25 @@ import pluginOxlint from 'eslint-plugin-oxlint'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 
 export default defineConfig([
+  js.configs.recommended,
+  ...pluginVue.configs['flat/essential'],
+  ...pluginOxlint.configs['flat/recommended'],
+  skipFormatting,
+
   {
     name: 'app/files-to-lint',
     files: ['**/*.{js,mjs,jsx,vue}'],
-  },
-
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
-
-  {
     languageOptions: {
       globals: {
         ...globals.browser,
       },
     },
+    rules: {
+      // 关闭 单词多词 规则
+      'vue/multi-word-component-names': 'off',
+      // 在此添加其他自定义规则
+    },
   },
 
-  js.configs.recommended,
-  ...pluginVue.configs['flat/essential'],
-  ...pluginOxlint.configs['flat/recommended'],
-  skipFormatting,
+  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
 ])
