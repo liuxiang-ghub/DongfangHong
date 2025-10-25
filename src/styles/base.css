@@ -10,10 +10,12 @@ a {
   outline: none;
 }
 
-body {
+body,
+html {
   min-width: 1700px;
   height: 100%;
   font-size: 14px;
+  height: 100%;
 }
 
 ul {
