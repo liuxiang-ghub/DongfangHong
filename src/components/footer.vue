@@ -3,7 +3,7 @@
     <div class="footerTop w">
       <div class="footer-container w">
         <div class="footer-logo">
-          <img src="../imgs/【哲风壁纸】护眼-舒适.png" alt="东方红" />
+          <img src="/imgs/home/logo.png" alt="东方红" />
         </div>
         <div class="footer-columns w">
           <div v-for="(col, index) in footerData" :key="index" class="footer-col">

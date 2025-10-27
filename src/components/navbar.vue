@@ -1,7 +1,9 @@
 <template>
-  <header :class="{ 'home-header': isHome }">
+  <header :class="{ 'home-header': isHome, scrolled: isScrolled }">
     <section class="navigate w">
-      <img src="../imgs/【哲风壁纸】护眼-舒适.png" alt="" class="logo" />
+      <a href="#">
+        <img src="/imgs/home/Group.png" alt="" class="logo" />
+      </a>
       <div class="nav">
         <ul>
           <li>
@@ -46,9 +48,27 @@
 </template>
 <script setup lang="js">
 import { useRoute } from 'vue-router'
-import { computed } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 const route = useRoute()
 const isHome = computed(() => route.path === '/' || route.name === 'home')
+const isScrolled = ref(false)
+let scrollTimer = null
+//滚动事件，节流
+const handleScroll = () => {
+  if (scrollTimer) return
+
+  scrollTimer = setTimeout(() => {
+    isScrolled.value = window.scrollY > 50
+    scrollTimer = null
+  }, 10)
+}
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll, { passive: true })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 <style scoped>
 /* 首页样式 */
@@ -61,10 +81,21 @@ const isHome = computed(() => route.path === '/' || route.name === 'home')
 /* 通用样式 */
 header {
   width: 100%;
-  height: 6rem;
+  height: 100px;
   position: sticky;
   top: 0;
   background-color: transparent;
+}
+/*  滚动后样式 */
+.home-header.scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s,
+    border-bottom 0.3s;
 }
 .navigate.w {
   height: 100%;
@@ -74,8 +105,8 @@ header {
 }
 .logo {
   display: block;
-  width: 20%;
-  height: 100%;
+  max-width: 113px;
+  max-height: 40px;
 }
 
 .nav {
