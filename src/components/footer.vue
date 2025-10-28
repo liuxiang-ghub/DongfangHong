@@ -87,18 +87,18 @@ footer {
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
+  margin-top: 40px;
 }
 
 .footer-logo img {
-  width: 220px;
+  width: 100px;
   height: auto;
-  margin-right: 50px;
 }
 
 .footer-columns {
+  width: 804px;
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap; /* 保证小屏自适应 */
 }
 
 .footer-col {
@@ -107,7 +107,7 @@ footer {
 }
 
 .footer-col h3 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   margin-bottom: 15px;
 }
@@ -119,7 +119,7 @@ footer {
 }
 
 .footer-col li {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 2;
   cursor: pointer;
   transition: color 0.3s;
@@ -153,16 +153,5 @@ footer {
   content: '|';
   margin-left: 5px; /* 与 gap 对齐 */
   color: #000000;
-}
-/* 矢量图 */
-.icon-icon-sousu-copy,
-.icon-diqiu,
-.icon-zhongyingwenqiehuan-xianshizhongyingwen {
-  font-size: 1.4rem;
-}
-
-.icon-xiangxiajiantou {
-  font-size: 1.2rem;
-  font-weight: bold;
 }
 </style>

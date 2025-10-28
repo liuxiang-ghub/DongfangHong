@@ -1,23 +1,28 @@
-<!-- 科研创新 -->
+<!-- 产品体系 -->
 <template>
   <section>
-    <li class="home-scientific w">
+    <li class="home-product w">
       <section class="home-navigationTitle">
-        <h1>科研创新</h1>
+        <h1>产品体系</h1>
         <p>我是描述内容我是描述内容我是描述内容</p>
       </section>
-      <section class="home-scientific-middle">
-        <ul class="home-scientific-middle-list">
-          <li v-for="item in homeScientific" :key="item.id">
+      <section class="home-product-middle">
+        <ul class="home-product-middle-list">
+          <li
+            v-for="item in homeProduct"
+            :key="item.id"
+            :class="{ active: activeIndex === item.id }"
+            @mouseenter="setActive(item.id)"
+          >
             <a href="#">
               <img :src="item.img" alt="item.title" />
             </a>
             <section>
               <h2>{{ item.title }}</h2>
               <p>{{ item.content }}</p>
-              <a href="#" id="home-scientificDetail">
+              <a href="#" id="home-productDetail">
                 <span>了解更多</span>
-                <img src="/imgs/home/Frame.png" id="arrows" />
+                <img src="/imgs/home/Frame.png" alt="" />
               </a>
             </section>
           </li>
@@ -26,47 +31,61 @@
     </li>
   </section>
 </template>
-
 <script setup>
 import { ref } from 'vue'
-// 产品体系
-const homeScientific = ref([
+const activeIndex = ref(1)
+const homeProduct = ref([
   {
     id: 1,
-    img: '/imgs/home/Rectangle 691.png',
-    title: '航天生物技术',
+    img: '/imgs/home/Rectangle 696.png',
+    title: '营养保健',
     content: '我是描述内容我是描述内容我是描述内容我是描述内容我是描述内容我是描述内容',
   },
   {
     id: 2,
-    img: '/imgs/home/Rectangle 691(1).png',
-    title: '航天医学成功转化',
+    img: '/imgs/home/Rectangle 705.png',
+    title: '美妆护肤',
     content: '我是描述内容我是描述内容我是描述内容我是描述内容我是描述内容我是描述内容',
   },
   {
     id: 3,
-    img: '/imgs/home/Rectangle 691(2).png',
-    title: '航天生物技术',
+    img: '/imgs/home/Rectangle 706.png',
+    title: '家居生活',
+    content: '我是描述内容我是描述内容我是描述内容我是描述内容我是描述内容我是描述内容',
+  },
+  {
+    id: 4,
+    img: '/imgs/home/Rectangle 707.png',
+    title: '健康设备',
     content: '我是描述内容我是描述内容我是描述内容我是描述内容我是描述内容我是描述内容',
   },
 ])
+const setActive = (id) => {
+  activeIndex.value = id
+}
 </script>
 
 <style scoped>
-.home-scientific-top p {
-  font-size: 16px;
-}
-.home-scientific-middle {
-  flex: 1;
-}
-.home-scientific-middle-list {
+.home-product {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-/* 鼠标悬浮效果 */
-.home-scientific-middle-list li {
+.home-product-top p {
+  font-size: 16px;
+}
+.home-product-middle {
+  flex: 1;
+}
+.home-product-middle-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* 光标滚动切换产品体系 */
+.home-product-middle-list li {
   max-height: 482px;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -77,20 +96,24 @@ const homeScientific = ref([
   justify-content: space-between;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
 }
-.home-scientific-middle-list li:hover {
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6);
-}
-.home-scientific-middle-list li:hover #arrows {
-  transform: translateX(100px);
+.home-product-middle-list li.active {
+  width: 391px;
+  transition: all 0.3s ease;
+  opacity: 1;
 }
 
-.home-scientific-middle-list li img {
+.home-product-middle-list li:not(.active) {
+  width: 257.67px;
+  opacity: 0.8;
+}
+
+.home-product-middle-list li img {
   width: 100%;
   height: 304px;
   object-fit: fill;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
-.home-scientific-middle-list li section {
+.home-product-middle-list li section {
   width: 100%;
   height: 178px;
   padding: 20px;
@@ -98,24 +121,23 @@ const homeScientific = ref([
   flex-direction: column;
   justify-content: space-between;
 }
-.home-scientific-middle-list li section h2 {
+.home-product-middle-list li section h2 {
   font-size: 24px;
   font-weight: 600;
 }
-.home-scientific-middle-list li section p {
+.home-product-middle-list li section p {
   font-size: 14px;
   font-weight: 300;
 }
-#home-scientificDetail {
+#home-productDetail {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
-#home-scientificDetail span {
+#home-productDetail span {
   font-size: 16px;
   font-weight: 400;
 }
-#home-scientificDetail img {
+#home-productDetail img {
   width: 24px;
   height: auto;
 }

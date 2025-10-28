@@ -77,6 +77,7 @@ onUnmounted(() => {
   top: 0;
   left: 0;
   background-color: transparent;
+  z-index: 999;
 }
 /* 通用样式 */
 header {
